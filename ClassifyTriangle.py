@@ -12,16 +12,15 @@ import unittest
 
         """
 def classify_triangle(a, b, c):
-    right_triangle1 = pow(a, 2) + pow(b, 2)
-    right_triangle2 = pow(b, 2) + pow(c, 2)
-    right_triangle3 = pow(c, 2) + pow(a, 2)
     if (a + b <= c) or (a + c <= b) or (b + c <= a) or a <= 0 or b <= 0 or c <= 0:
+        return "Not Valid"
+    elif not(isinstance(a,int or float) and isinstance(b,int or float) and isinstance(c,int or float)):
         return "Not Valid"
     elif a == b and b == c:
         return "Equilateral"
-    elif (right_triangle1 == pow(c, 2)) or (right_triangle2 == pow(a, 2)) or (right_triangle3 == pow(b, 2)) and (a != b and a != c and b != c):
+    elif ((pow(a, 2) + pow(b, 2)) == pow(c, 2)) or ((pow(b, 2) + pow(c, 2)) == pow(a, 2)) or ((pow(c, 2) + pow(a, 2)) == pow(b, 2)) and (a != b and a != c and b != c):
         return "Scalene Right"
-    elif (right_triangle1 == pow(c, 2)) or (right_triangle2 == pow(a, 2)) or (right_triangle3 == pow(b, 2)) and (a == b or a == c or b == c):
+    elif ((pow(a, 2) + pow(b, 2)) == pow(c, 2)) or ((pow(b, 2) + pow(c, 2)) == pow(a, 2)) or ((pow(c, 2) + pow(a, 2)) == pow(b, 2)) and (a == b or a == c or b == c):
         return "Isosceles Right"
     elif a == b or a == c or b == c:
         return "Isosceles"
@@ -40,6 +39,8 @@ class TestTriangle(unittest.TestCase):
     def test_notvalid(self):
         self.assertEqual(classify_triangle(0, 0, 0), "Not Valid")
         self.assertEqual(classify_triangle(-3, -5, 6), "Not Valid")
+        self.assertEqual(classify_triangle("1", "3", "5"), "Not Valid")
+        self.assertEqual(classify_triangle(True, True, False), "Not Valid")
         self.assertNotEqual(classify_triangle(1, 10, 12), "Valid", "Should be an invalid triangle")
 
     def test_isosceles(self):
@@ -62,3 +63,4 @@ if __name__ == '__main__':
     print(classify_triangle(4,6,7))
     print(classify_triangle(3.2, 5.4, 8))
     unittest.main(exit=False)
+      
