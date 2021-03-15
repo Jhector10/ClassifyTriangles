@@ -7,7 +7,7 @@ The primary goal of this file is to demonstrate a simple unittest implementation
 import math
 import unittest
 
-from ClassifyTriangle import classify_triangle
+from triangle_check import classify_triangle
 
 # This code implements the unit test functionality
 # https://docs.python.org/3/library/unittest.html has a nice description of the framework
@@ -35,8 +35,8 @@ class TestTriangle(unittest.TestCase):
         self.assertEqual(classify_triangle(4, 8, 9), "Scalene")
 
     def test_right(self):
-        self.assertEqual(classify_triangle(3, 4, 5), "Scalene Right")
-        self.assertNotEqual(classify_triangle(5, 12, 13), "Isosceles Right", "Should be Scalene Right")
+        self.assertEqual(classify_triangle(3, 4, 5), "Right")
+        self.assertEqual(classify_triangle(5, 12, 13), "Right")
 
 
 if __name__ == '__main__':
